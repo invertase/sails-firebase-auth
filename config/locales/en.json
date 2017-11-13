@@ -1,0 +1,8 @@
+{
+  "http.badRequest": "The request cannot be fulfilled due to bad syntax.",
+  "http.created": "The request has been fulfilled and a new resource has been created.",
+  "http.notFound": "The requested resource could not be found but may be available again in the future.",
+  "http.serverError": "Looks like something bad happened on our servers, we have been notified of this issue.",
+  "http.unauthorized": "Missing or invalid authentication token.",
+  "http.forbidden": "You are not authorized to perform this operation."
+}
