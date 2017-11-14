@@ -1,6 +1,31 @@
-## Sails API Starter - with Firebase auth
+## Sails API + Firebase Authentication
 
 A [Sails v1.x.x](https://sailsjs.com) JSON / MsgPack API starter project with Firebase auth via tokens baked in.
+
+## Getting Started
+
+Clone this repo, run `npm install`. Download your firebase admin service account json file, update `config/custom.js` to the correct firebase url + path to your json file.
+
+### Responses
+
+All of the default sails responses have been overridden to respond in a well structured JSON or MsgPack format.
+
+#### Sample Response:
+```javascript
+{
+    // short descriptive response code string, e.g. 'E_BAD_REQUEST' or 'OK'
+    code: String,
+
+    // http code of the response - for ease of determining the code on the receiving end
+    http_code: Number,
+
+    // descriptive messaage about the repsonse, e.g. 'The requested resource could not be found but may be available again in the future.'
+    message: String,
+
+    // your data you provided by calling `res.ok(YourResponseData);` in your controllers.
+    payload: null | YourResponseData
+}
+```
 
 ### Policies
 
@@ -10,15 +35,8 @@ A [Sails v1.x.x](https://sailsjs.com) JSON / MsgPack API starter project with Fi
     - If no `token` header is present `next()` is called - it does not prevent continuation, use the `authenticated` policy for that.
     - If there's an error validating the token or the user no longer exists / was not found then an additional `auth_error` property is attached to the final response, e.g:
 
-      ```javascript
+      ```json
       {
-          "code": "OK",
-          "http_code": 200,
-          "src": "MacBook.local",
-          "message": "Operation has successfully executed.",
-          "payload": {
-              "version": "0.0.0"
-          },
           "auth_error": {
               "code": "auth/argument-error",
               "message": "Decoding Firebase ID token failed. Make sure you passed the entire string JWT which represents an ID token. See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token."
@@ -27,6 +45,51 @@ A [Sails v1.x.x](https://sailsjs.com) JSON / MsgPack API starter project with Fi
       ```
 
   - **`authenticated`**: Returns 401 unauthorised when used in conjunction with `firebase-auth` policy and the user was unable to be authenticated. Continues request flow if authentication successful.
+
+### Debugging Requests
+
+This project has a built in option to enable additional debug info onto the request responses. Passing `debug` with a truthy value as either a header, param or a body property will enable it for that request.
+
+#### Sample Debug Response
+
+```json
+{
+    "code": "E_NOT_FOUND",
+    "http_code": 404,
+    "message": "The requested resource could not be found but may be available again in the future.",
+    "payload": null,
+    "debug": {
+        // every request internally has a unqiue id generated for it, this is avaliable at `req.id`
+        "id": "cj9zreglg000pl8x5pk3xggep",
+
+        // api url route requested
+        "route": "/status2?debug=true",
+
+        // name of the server that responded to the request
+        "src": "MacBook.local",
+
+        // original headers sent with the request
+        "headers": {
+            "host": "localhost:1337",
+            "connection": "keep-alive",
+            "cache-control": "no-cache",
+            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.75 Safari/537.36",
+            "token": "foobarbaz",
+            "accept": "*/*",
+            "dnt": "1",
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "en-GB,en;q=0.9,nl-BE;q=0.8,nl;q=0.7,en-US;q=0.6"
+        },
+
+        // original params sent with the request
+        "params": {
+            "debug": "true"
+        }
+    }
+}
+```
+
+
 
 
 
