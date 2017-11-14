@@ -9,12 +9,8 @@
  */
 
 module.exports.custom = {
-
-  /***************************************************************************
-  *                                                                          *
-  * Any other custom configuration used by your app.                         *
-  *                                                                          *
-  ***************************************************************************/
-  // …
-
+  firebase: {
+    url: 'YOUR URL HERE',
+    credential: require('../firebase-service-account.json'),
+  }
 };
