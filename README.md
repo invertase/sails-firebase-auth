@@ -43,7 +43,7 @@ All of the default sails responses have been overridden to respond in a well str
   - **`firebase`**: Attaches the firebase admin sdk onto `req.firebase`
   - **`firebase-auth`**: Verifies a `token` header with the Firebase Admin SDK.
     - Attaches the resulting Firebase user onto `req.user` (`user.toJSON()`).
-    - If no `token` header is present `next()` is called - it does not prevent continuation, use the `authenticated` policy for that.
+    - If no `token` header is present `next()` the request will still continue through - this policy does not prevent continuation, pair it with the `authenticated` policy below to do this.
     - If there's an error validating the token or the user no longer exists / was not found then an additional `auth_error` property is attached to the final response, e.g:
 
       ```json
