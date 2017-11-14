@@ -38,7 +38,7 @@ module.exports = function jsonOrMsgPack(response, config = {}) {
     };
   }
 
-  // send a msgpack response if requested
+  // send a MsgPack response if requested
   if (type === 'application/vnd.msgpack') {
     res.type('application/vnd.msgpack');
     return res.end(encode(_response));
