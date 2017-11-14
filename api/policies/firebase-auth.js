@@ -24,7 +24,10 @@ module.exports = function (req, res, next) {
             req.user = user.toJSON();
             return next();
           });
-      }).catch(res.serverError);
+      }).catch((error) => {
+        req.props = Object.assign(req.props || {}, { auth_error: error.errorInfo });
+        return next();
+      });
   }
 
   return next();
