@@ -1,4 +1,15 @@
-## Sails API + Firebase Authentication
+<p align="center">
+  <a href="https://rnfirebase.io">
+    <img src="https://i.imgur.com/eNsnSl7.png"><br/>
+  </a>
+</p>
+
+<p align="center">
+  <a href="#backers"><img src="https://opencollective.com/react-native-firebase/backers/badge.svg" alt="Backers on Open Collective"></a>
+  <a href="#sponsors"><img src="https://opencollective.com/react-native-firebase/sponsors/badge.svg" alt="Sponsors on Open Collective"></a>
+  <a href="https://discord.gg/t6bdqMs"><img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg?style=flat-square" alt="Chat"></a>
+  <a href="https://twitter.com/mikediarmid"><img src="https://img.shields.io/twitter/follow/mikediarmid.svg?style=social&label=Follow" alt="Follow on Twitter"></a>
+</p>
 
 A [Sails v1.x.x](https://sailsjs.com) JSON / MsgPack API starter project with Firebase auth via tokens baked in.
 
@@ -52,7 +63,7 @@ This project has a built in option to enable additional debug info onto the requ
 
 #### Sample Debug Response
 
-```json
+```javascript
 {
     "code": "E_NOT_FOUND",
     "http_code": 404,
