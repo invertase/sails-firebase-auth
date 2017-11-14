@@ -17,6 +17,22 @@ A [Sails v1.x.x](https://sailsjs.com) JSON / MsgPack API starter project with Fi
 
 Clone this repo, run `npm install`. Download your firebase admin service account json file, update `config/custom.js` to the correct firebase url + path to your json file.
 
+### Retrieving a user token client side
+
+To retrieve a token on the Firebase Web SDK or on [React Native Firebase](https://github.com/invertase/react-native-firebase) ensure a user is currently signed in and then call the `getIdToken` method on `currentUser`, e.g:
+
+```javascript
+if (firebase.auth().currentUser) {
+  firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function (idToken) {
+    const requestHeaders = {
+      token: idToken,
+    };
+    // send your request to the sails api with the header above
+    // ...
+  });
+}
+```
+
 ### Responses
 
 All of the default sails responses have been overridden to respond in a well structured JSON or MsgPack format.
