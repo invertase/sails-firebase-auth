@@ -10,11 +10,11 @@ A [Sails v1.x.x](https://sailsjs.com) JSON / MsgPack API starter project with Fi
     - If no `token` header is present `next()` is called - it does not prevent continuation, use the `authenticated` policy for that.
     - If there's an error validating the token or the user no longer exists / was not found then an additional `auth_error` property is attached to the final response, e.g:
 
-      ```json
+      ```javascript
       {
           "code": "OK",
           "http_code": 200,
-          "src": "MooBar.local",
+          "src": "MacBook.local",
           "message": "Operation has successfully executed.",
           "payload": {
               "version": "0.0.0"
@@ -26,7 +26,7 @@ A [Sails v1.x.x](https://sailsjs.com) JSON / MsgPack API starter project with Fi
       }
       ```
 
-  - **`authenticated`**: Returns 401 unauthorised when used in conjunction with `firebase-auth` policy and the
+  - **`authenticated`**: Returns 401 unauthorised when used in conjunction with `firebase-auth` policy and the user was unable to be authenticated. Continues request flow if authentication successful.
 
 
 
